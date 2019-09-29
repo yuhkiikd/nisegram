@@ -13,8 +13,13 @@ class ImagesController < ApplicationController
     end
   end
 
+  def confirm
+    @image = Image.new(image_params)
+    render :new if @image.invalid?
+  end
+
   def create
-    @image = Image.create(image_params)
+    @image = Image.new(image_params)
     if params[:back]
       render :new
     else
@@ -28,11 +33,6 @@ class ImagesController < ApplicationController
   end
 
   def show
-  end
-
-  def confirm
-    @image = Image.new(image_params)
-    render :new if @image.invalid?
   end
 
   def edit
