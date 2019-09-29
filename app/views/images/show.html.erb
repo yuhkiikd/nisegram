@@ -1,0 +1,13 @@
+<h1>確認</h1>
+<table>
+  <tr>
+    <th>画像</th>
+    <th>content</th>
+  </tr>
+  <tr>
+      <td><%= image_tag @image.image.url %></td>
+      <td><%= @image.content %></td>
+  </tr>
+</table>
+
+<%= link_to '戻る', images_path %>
