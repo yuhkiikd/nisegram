@@ -15,11 +15,13 @@ class ImagesController < ApplicationController
 
   def confirm
     @image = Image.new(image_params)
+    @image.user_id = current_user.id
     render :new if @image.invalid?
   end
 
   def create
     @image = Image.new(image_params)
+    @image.user_id = current_user.id
     if params[:back]
       render :new
     else
