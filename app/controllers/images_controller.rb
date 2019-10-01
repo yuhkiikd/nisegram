@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user, only: [:edit, :update, :destroy]
 
   def index
     @images = Image.all.order(id: 'DESC')
@@ -62,5 +63,11 @@ class ImagesController < ApplicationController
 
   def image_params
     params.require(:image).permit(:image, :image_cache, :content)
+  end
+
+  def ensure_current_user
+    unless logged_in? && current_user.id == @image.user_id
+      redirect_to images_path
+    end
   end
 end

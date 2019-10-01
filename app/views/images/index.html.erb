@@ -12,11 +12,13 @@
   </tr>
 <% @images.each do |image| %>
   <tr>
-      <td><%= image_tag image.image.url %></td>
-      <td><%= image.content %></td>
-      <td><%= link_to '詳細', image_path(image.id) %></td>
-      <td><%= link_to '編集', edit_image_path(image.id) %></td>
-      <td><%= link_to '削除', image_path(image.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+    <td><%= image_tag image.image.url %></td>
+    <td><%= image.content %></td>
+    <td><%= link_to '詳細', image_path(image.id) %></td>
+  <% if logged_in? && current_user.id == image.user.id %>
+    <td><%= link_to '編集', edit_image_path(image.id) %></td>
+    <td><%= link_to '削除', image_path(image.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></td>
+  <% end %>
   </tr>
 <% end %>
 </table>
