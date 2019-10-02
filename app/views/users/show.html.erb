@@ -3,7 +3,5 @@
 <p>メールアドレス： <%= @user.email %></p>
 <p>登録した日時： <%= @user.created_at %></p>
 <p>更新した日時： <%= @user.updated_at %></p>
-
 <p>プロフィール画像：</p>
-
 <%= link_to "アカウント情報を更新する", edit_user_path(@user.id) %>
