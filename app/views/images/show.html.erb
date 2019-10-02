@@ -3,10 +3,12 @@
   <tr>
     <th>画像</th>
     <th>content</th>
+    <td>投稿者</td>
   </tr>
   <tr>
-      <td><%= image_tag @image.image.url %></td>
-      <td><%= @image.content %></td>
+    <td><%= image_tag @image.image.url %></td>
+    <td><%= @image.content %></td>
+    <td><%= @image.user.name %></td>
   </tr>
 </table>
 

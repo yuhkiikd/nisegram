@@ -1,7 +1,9 @@
 <h1><%= @user.name %>のページ</h1>
 
+<% if @user.image? %>
 <p>プロフィール画像<br>
-<%= image_tag @user.image.url %></p>
+  <td><%= image_tag @user.image.url %></td>
+<% end %>
 <p>登録した日時： <%= @user.created_at %></p>
 <p>更新した日時： <%= @user.updated_at %></p>
 <% if logged_in? && current_user.id == @user.id %>
