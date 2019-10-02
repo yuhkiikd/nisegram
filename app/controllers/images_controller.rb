@@ -65,6 +65,7 @@ class ImagesController < ApplicationController
     params.require(:image).permit(:image, :image_cache, :content)
   end
 
+
   def ensure_current_user
     unless logged_in? && current_user.id == @image.user_id
       redirect_to images_path
