@@ -3,12 +3,13 @@
   <tr>
     <th>画像</th>
     <th>content</th>
+    <th>投稿者</th>
   </tr>
 <% @images.each do |image| %>
   <tr>
     <td><%= image_tag image.image.url %></td>
     <td><%= image.content %></td>
-    <td>投稿者：<%= image.user.name %></td>
+    <td><%= image.user.name %></td>
     <td><%= link_to '詳細', image_path(image.id) %></td>
   <% if logged_in? && current_user.id == image.user.id %>
     <td><%= link_to '編集', edit_image_path(image.id) %></td>

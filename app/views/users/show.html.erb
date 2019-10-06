@@ -10,3 +10,5 @@
   <p>メールアドレス： <%= @user.email %></p>
   <%= link_to "アカウント情報を更新する", edit_user_path(@user.id) %>
 <% end %>
+
+<%= link_to 'お気に入り', likes_user_path %>

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_131329) do
+ActiveRecord::Schema.define(version: 2019_10_05_233038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_favorites_on_image_id"
+    t.index ["user_id", "image_id"], name: "index_favorites_on_user_id_and_image_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "images", force: :cascade do |t|
     t.text "image"
@@ -32,5 +42,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_131329) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "favorites", "images"
+  add_foreign_key "favorites", "users"
   add_foreign_key "images", "users"
 end

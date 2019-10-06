@@ -6,6 +6,7 @@
     <td>投稿者</td>
   </tr>
   <tr>
+    <td><%= render 'like_button', image: @image %></td>
     <td><%= image_tag @image.image.url %></td>
     <td><%= @image.content %></td>
     <td><%= @image.user.name %></td>

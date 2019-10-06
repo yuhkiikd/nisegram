@@ -1,0 +1,6 @@
+<h2>あなたがお気に入りした記事</h2>
+
+<% @favorite.each do |f| %>
+  <p><%= image_tag f.image.image.url %></p>
+  <p><%= f.image.content %></p>
+<% end %>
