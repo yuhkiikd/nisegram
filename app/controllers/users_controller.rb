@@ -9,8 +9,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "ユーザー登録が完了しました！"
+      session[:user_id] = @user.id
       redirect_to user_path(@user.id)
+      flash[:success] = "ユーザー登録が完了しました！"
     else
       render :new
     end
@@ -24,8 +25,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "ユーザー情報を更新しました！"
       redirect_to @user
+      flash[:success] = "ユーザー情報を更新しました！"
     else
       render :edit
     end

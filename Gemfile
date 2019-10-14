@@ -54,3 +54,5 @@ gem 'better_errors'
 gem 'binding_of_caller'
 
 gem 'rails-i18n'
+
+gem 'letter_opener_web'

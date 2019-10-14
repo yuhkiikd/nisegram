@@ -28,6 +28,7 @@ class ImagesController < ApplicationController
       render :new
     else
       if @image.save
+        ImageMailer.send_when_post(@image).deliver
         flash[:success] = '記事を作成しました！'
         redirect_to images_path
       else
