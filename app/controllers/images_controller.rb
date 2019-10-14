@@ -8,10 +8,14 @@ class ImagesController < ApplicationController
   end
 
   def new
-    if params[:back]
-      @image = Image.new(image_params)
+    if logged_in?
+      if params[:back]
+        @image = Image.new(image_params)
+      else
+        @image = Image.new
+      end
     else
-      @image = Image.new
+      redirect_to images_path
     end
   end
 
@@ -38,7 +42,9 @@ class ImagesController < ApplicationController
   end
 
   def show
-    @favorite = current_user.favorites.find_by(image_id: @image.id)
+    if logged_in?
+      @favorite = current_user.favorites.find_by(image_id: @image.id)
+    end
   end
 
   def edit
