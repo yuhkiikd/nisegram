@@ -1,28 +1,38 @@
-<h1>Sign up</h1>
-
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %>prohibited this @user from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="non-sidebar-content">
+  <h1>Sign up</h1>
+  <div class="error-message">
+    <% if @user.errors.any? %>
+      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     <% end %>
-    </ul>
   </div>
-<% end %>
-
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit 'アカウントを作成' %>
-<% end %>
+  <%= form_with(model: @user, local: true) do |f| %>
+    <div class="login-and-siginin-form-item">
+      <div class="form_label profimg"><%= f.label :"プロフィール画像(縦横共に200px以内でお願いします)" %></div>
+      <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+    <div class="login-and-siginin-form-item">
+      <div class="form_label"><%= f.label :name %></div>
+      <%= f.text_field :name %>
+    </div>
+    <div class="login-and-siginin-form-item">
+      <div class="form_label"><%= f.label :email %></div>
+      <%= f.email_field :email %>
+    </div>
+    <div class="login-and-siginin-form-item">
+      <div class="form_label"><%= f.label :password %></div>
+      <%= f.password_field :password %>
+    </div>
+    <div class="login-and-siginin-form-item">
+      <div class="form_label"><%= f.label :password_confirmation %></div>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <%= f.submit "アカウントの作成" %>
+  <% end %>
+</div>

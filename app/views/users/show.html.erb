@@ -1,14 +1,15 @@
-<h1><%= @user.name %>のページ</h1>
+<div class="container">
+  <h1><%= @user.name %>のページ</h1>
 
-<% if @user.image? %>
-<p>プロフィール画像<br>
-  <td><%= image_tag @user.image.url %></td>
-<% end %>
-<p>登録した日時： <%= @user.created_at %></p>
-<p>更新した日時： <%= @user.updated_at %></p>
-<% if logged_in? && current_user.id == @user.id %>
-  <p>メールアドレス： <%= @user.email %></p>
-  <%= link_to "アカウント情報を更新する", edit_user_path(@user.id) %>
-<% end %>
-
-<%= link_to 'お気に入り', likes_user_path %>
+  <% if @user.image? %>
+  <p>プロフィール画像<br>
+    <td><%= image_tag @user.image.url %></td>
+  <% end %>
+  <p>登録した日時： <%= @user.created_at %></p>
+  <p>更新した日時： <%= @user.updated_at %></p>
+  <% if logged_in? && current_user.id == @user.id %>
+    <p>メールアドレス： <%= @user.email %></p>
+    <p><%= link_to "アカウント情報を更新する", edit_user_path(@user.id) %></p>
+  <% end %>
+  <p><%= link_to 'お気に入り', likes_user_path %></p>
+</div>

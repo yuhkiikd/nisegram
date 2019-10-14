@@ -4,24 +4,39 @@
     <title>NisegramApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "#{key}") %>
-  <% end %>
-    <%= link_to "Nisegram", images_path %>
-  <% if logged_in? %>
-    <%= link_to "Profile", user_path(current_user.id) %>
-    <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_path %>
-    <%= link_to "Log in", new_session_path %>
-  <% end %>
-
-  <%= yield %>
+    <header>
+      <nav class="navbar navbar-light">
+        <div class="navbar-header">
+          <%= link_to "Nisegram", images_path, class: "navbar-brand" %>
+        </div>
+        <div class="pull-right">
+          <ul class="nav navbar-nav">
+            <% if logged_in? %>
+              <li><%= link_to '記事の新規作成', new_image_path %></li>
+              <li><%= link_to "Profile", user_path(current_user.id) %></li>
+              <li><%= link_to "Log out", session_path(current_user.id), method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_path %></li>
+              <li><%= link_to "Log in", new_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
+    <div class="wrapper clearfix">
+      <%= yield %>
+    </div>
+    <footer>
+      <p>© Yuhki ikeda</p>
+    </footer>
   </body>
 </html>

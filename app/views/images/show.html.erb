@@ -1,16 +1,16 @@
-<h1>確認</h1>
-<table>
-  <tr>
-    <th>画像</th>
-    <th>content</th>
-    <td>投稿者</td>
-  </tr>
-  <tr>
-    <td><%= render 'like_button', image: @image %></td>
-    <td><%= image_tag @image.image.url %></td>
-    <td><%= @image.content %></td>
-    <td><%= @image.user.name %></td>
-  </tr>
-</table>
+<div class="container">
+  <h1>確認</h1>
+  <table>
+    <tr>
+      <td><%= image_tag @image.image.url %></td>
+    </tr>
+    <tr>
+      <td><%= @image.content %></td>
+    </tr>
+    <tr>
+      <td><%= render 'like_button', image: @image %></td>
+    </tr>
+  </table>
+</div>
 
 <%= link_to '戻る', images_path %>
